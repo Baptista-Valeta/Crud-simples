@@ -1,6 +1,17 @@
+const container = document.querySelector(".container");
+const modal_cadastro =    document.querySelector('.section1');
+
 window.document.querySelector("#openCadastro").addEventListener("click", function() {
-   document.querySelector('.section1').classList.toggle('active'); // Alterna entre adicionar e remover a classe active do alemento   
+   modal_cadastro.classList.add('active'); // Adiciona a classe active ao alemento   
+   container.classList.add("active");
 });
+
+document.querySelector(".icon-close").addEventListener("click", () => {
+   modal_cadastro.classList.remove("active");
+   container.classList.remove("active");
+});
+
+
 
 
 function cadastrar() {

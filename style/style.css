@@ -6,20 +6,20 @@
 
 body {
    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-   background-color: rgb(66, 60, 60);
-   color: #fff;
+   color: black;
+   background-color: white;
 }
 
 header {
    background-color: orange;
    padding: 20px;
    color: white;
-   text-shadow: 5px 5px 20px;
    text-transform: uppercase;
    text-wrap: wrap;
    display: flex;
    justify-content: center;
    align-items: center;
+   z-index: -1;
 }
 
 header button {
@@ -27,46 +27,71 @@ header button {
    right: 10%;
    padding: 10px;
    background-color: lightblue;
-   border-color: lightblue;
    cursor: pointer;
-   transition: all .2s ;
+   border: none;
+   transition: all .1s ;
    font-weight: 600;
 }
 
 header button:hover {
-   box-shadow: 10px 10px 100px;
-   background: orange;
-   border: 2px solid lightblue;
-   color: white;
+   opacity: 0.8;
+}
+
+.container.active {
+   background-color: #fff;
+   background-color: rgba(55, 54, 54, 0.887);
+   width: 100%;
+   height: 100vh;
+   z-index: 3;
 }
 
 .section1 {
-   background: orange;
+   background: white;
    color: black;
    border: 1px solid;
    height: 300px;
-   display: none;
+   display: flex;
+   scale: 0;
    flex-direction: column;
    align-items: center;
    top: 140px;
    gap: 28px;   
-   width: 90%;
+   width: 60%;
    box-shadow: 5px 0px 12px rgba(0, 0, 0, 0.568);
    position: absolute;
-   left: 5%;
-   z-index: 5;
+   left: 20%;
+   z-index: 3;
+   transition: all .2s ease;
 }
 
 .section1.active {
-   display: flex;
+   /* display: flex; */
    animation: aparecer 0.5s forwards;
+   scale: 1;
 }
 
-.section1 h3 {
+.section1 .title {
    background-color: lightblue;
-   text-align: center;
-   padding: 20px;
+   padding: 0;
    width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   user-select: none;
+}
+
+.title .icon-close {
+   font-size: 20px;
+   cursor: pointer;
+   border: 1px solid;
+   padding: 10px 20px;
+   border: none;
+   transition: all .2s;
+}
+
+.title .icon-close:hover {
+   color: white;
+   background-color: rgb(230, 39, 39);
 }
 
 #cadastro {
@@ -100,10 +125,11 @@ header button:hover {
 }
 
 .dados button {
-   padding: 8px;
+   padding: 10px;
    background: lightblue;
    border: none;
    cursor: pointer;
+   font-weight: 600;
 }
 
 .dados button:hover {
