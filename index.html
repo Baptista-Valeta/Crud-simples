@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Cadastro</title>
+   <link rel="stylesheet" href="style/style.css">
+   <script src="dist/script.js" defer></script>
+</head>
+<body>
+   <main class="container">
+      <header>
+         <h1>Cadastro de Clientes</h1>
+      
+         <button class="button" id="openCadastro">Cadastrar</button>
+      </header>
+      <section class="section1">
+         <h3>Cadastro de Clientes</h3>
+         <div id="cadastro">
+            <div class="dados">
+               <div class="input-box">
+                  <label for="nome">Nome</label>
+                  <input type="text" name="nome" id="nome">
+               </div>
+               <div class="input-box">
+                  <label for="numero">Numero</label>
+                  <input type="number" name="numero" id="numero">
+               </div>
+               <div class="input-box">
+                  <label for="morada">Morada</label>
+                  <input type="text" name="morada" id="morada">
+               </div>
+               <button onclick="cadastrar()">Cadastrar</button>
+            </div>
+            <div class="error"></div>
+         </div>
+      </section>
+      <section>
+         <div id="lista">
+            <table id="table">
+               <thead>
+                  <tr>
+                     <th>Nome</th>
+                     <th>Numero</th>
+                     <th>Morada</th>
+                     <th>Ações</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <!-- Os clientes cadastrados serao adicionados aqui -->
+               </tbody>
+            </table>
+         </div>
+      </section>
+   </main>
+
+</body>
+</html>
