@@ -22,19 +22,30 @@
          </div>
          <div id="cadastro">
             <div class="dados">
-               <div class="input-box">
-                  <label for="nome">Nome</label>
-                  <input type="text" name="nome" id="nome">
+               <div class="column_dados">
+                  <div class="input-box">
+                     <label for="nome">Nome</label>
+                     <input type="text" name="nome" id="nome" required>
+                  </div>
+                  <div class="input-box">
+                     <label for="numero">Numero</label>
+                     <input type="number" name="numero" id="numero" required>
+                  </div>
                </div>
-               <div class="input-box">
-                  <label for="numero">Numero</label>
-                  <input type="number" name="numero" id="numero">
+               <div class="column_dados">   
+                  <div class="input-box">
+                     <label for="morada">Morada</label>
+                     <input type="text" name="morada" id="morada" required>
+                  </div>
+                  <div class="input-box">
+                     <label for="email">Email</label>
+                     <input type="email" name="email" id="email" required>
+                  </div>
                </div>
-               <div class="input-box">
-                  <label for="morada">Morada</label>
-                  <input type="text" name="morada" id="morada">
-               </div>
-               <button onclick="cadastrar()">Cadastrar</button>
+            </div>
+            <div class="buttons">
+               <button id="cancel">Cancelar</button>
+               <button id="save" onclick="cadastrar()">Salvar</button>
             </div>
             <div class="error"></div>
          </div>
