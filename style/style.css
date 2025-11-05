@@ -135,6 +135,12 @@ header button:hover {
    font-size: 17px;
 }
 
+.input-box .error  {
+   border: 1px solid red;
+   width: 300px;
+   padding: 10px;
+}
+
 .buttons {
    text-align: end;
    padding: 20px;
