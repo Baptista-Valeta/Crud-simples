@@ -21,24 +21,24 @@
             <span class="icon-close">x</span>
          </div>
          <div id="cadastro">
-            <div class="dados">
+            <form class="dados">
                <div class="column_dados">
                   <div class="input-box">
                      <label for="nome">Nome</label>
-                     <input type="text" name="nome" id="nome" required>
+                     <input type="text" name="nome" id="nome">
                      <div class="error"></div>
                   </div>
                   <div class="input-box">
                      <label for="numero">Numero</label>
-                     <input type="number" name="numero" id="numero" required>
+                     <input type="number" name="numero" id="numero">
                      <div class="error"></div>
                   </div>
                </div>
                <div class="column_dados">   
                   <div class="input-box">
                      <label for="morada">Morada</label>
-                     <input type="text" name="morada" id="morada" required>
-                     <div class="error">fefe</div>
+                     <input type="text" name="morada" id="morada">
+                     <div class="error"></div>
                   </div>
                   <div class="input-box">
                      <label for="email">Email</label>
@@ -46,11 +46,11 @@
                      <div class="error"></div>
                   </div>
                </div>
-            </div>
-            <div class="buttons">
-               <button id="cancel">Cancelar</button>
-               <button id="save" onclick="cadastrar()">Salvar</button>
-            </div>
+               <div class="buttons">
+                  <button id="cancel">Cancelar</button>
+                  <button id="save" type="submit">Salvar</button>
+               </div>
+            </form>
             <div class="error"></div>
          </div>
       </section>

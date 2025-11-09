@@ -121,7 +121,9 @@ header button:hover {
 .dados .input-box {
    display: flex;
    flex-direction: column;
+   height: 100px;
    gap: 10px;
+   /* border: 1px solid; */
 }
 
 .input-box label {
@@ -133,12 +135,18 @@ header button:hover {
    width: 400px;
    padding: 15px;
    font-size: 17px;
+   outline: none;
 }
 
 .input-box .error  {
-   border: 1px solid red;
-   width: 300px;
+   width: 100%;
    padding: 10px;
+   display: none;
+   color: red;
+}
+
+.input-box .error.active {
+   display: block;
 }
 
 .buttons {
@@ -187,7 +195,8 @@ header button:hover {
 #table, th, td, tr {
    border-collapse: collapse;
    padding: 15px;
-   border: 1px solid rgba(173, 216, 230, 0.177);
+   border-bottom: 2px solid rgba(224, 255, 255, 0.197);
+   border-left: 2px solid rgba(224, 255, 255, 0.197);
 }
 
 tr:nth-child(odd) {
@@ -199,18 +208,4 @@ th {
    position: sticky;
    top: 0;
    z-index: 2;
-}
-
-.error {
-   display: none;
-   border: 2px solid red;
-   width: 50%;
-   height: 100px;
-   color: red;
-}
-
-.error h3, p {
-   text-align: center;
-   margin-bottom: 5px;
-   font-weight: 600;
 }

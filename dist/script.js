@@ -12,44 +12,58 @@ document.querySelector(".icon-close").addEventListener("click", () => {
 });
 
 
+const nome = document.querySelector('#nome');
+const numero = document.querySelector('#numero');
+const morada = document.querySelector('#morada');
+const email = document.querySelector("#email");
 
+const erro = document.getElementsByClassName("error");
 
-// function cadastrar() {
-//    const nome = document.querySelector('#nome');
-//    const numero = document.querySelector('#numero');
-//    const morada = document.querySelector('#morada');
+const validarForm = () => {
+   let isValid = true;
 
-//    if (nome.value === '' || numero.value === '' || morada.value === '') {
-//       const caixaError = document.querySelector('.error').style.display = 'block';
-      
-//       // Adicionar a mensagem de erro ...
+   // Validar nome
+   if (!nome.value) {
+      nome.style.borderColor = "red";
+      erro[0].textContent = "*O nome é obrigatório!";
+      erro[0].classList.add("active");
 
-//    }else {
-//       const table = document.getElementsByTagName("tbody")[0];
-//       const table_list = document.createElement("tr");
-   
-//       console.log(nome.value, numero.value, morada.value)
-   
-//       table_list.innerHTML = `
-//          <td>${nome.value}</td>
-//          <td>${numero.value}</td>
-//          <td>${morada.value}</td>
-//          <></>
-//       `;
-   
-//       table.appendChild(table_list);
+      nome.focus();
+      isValid = false;
+   }else if(nome.value.length < 2) {
+      nome.style.borderColor = "red";
+      erro[0].textContent = "*O nome deve ter no mínimo 2 caracteres!";
+      erro[0].classList.add("active");
 
-//    }
-// }
-
-const save = document.querySelector("#save").addEventListener("click", () => {
-   const nome = document.querySelector('#nome').value;
-   const numero = document.querySelector('#numero').value;
-   const morada = document.querySelector('#morada').value;
-   const email = document.querySelector("#email").value;
-
-   if(!nome || !numero || !morada || !email) {
-      alert ("Dados incompletos");
+      nome.focus();
+      isValid = false;
+   }else {
+      nome.style.borderColor="green";
+      erro[0].classList.remove("active");
    }
-});
 
+   // Validar numero
+   if(numero.value.length !== 9) {
+      numero.style.borderColor = "red";
+      erro.textContent = "O número deve ter 9 car"
+   }else {
+      numero.style.borderColor = "green"; 
+   }
+
+   return true;
+}
+
+const salvarDados = (e) => {
+   e.preventDefault(); // Impede o envio padrão do formulário
+   if (e.type === "click") {
+      if(validarForm() === true) {
+         console.log("Pronto para enviar os dados preenchidos!");
+
+      }else {
+         console.error("Dados incompletos!")
+      }
+   }
+
+}
+
+document.querySelector("#save").addEventListener("click", salvarDados);
