@@ -209,3 +209,25 @@ th {
    top: 0;
    z-index: 2;
 }
+
+.sucessy {
+   transition: all .2s ease-in-out;
+   top: -6.5%;
+   position: absolute;
+   padding: 10px;
+   background-color: #fff;
+   margin: auto;
+   width: 13%;
+   height: 60px;
+   box-shadow: 3px 2px 20px rgba(71, 69, 69, 0.664);
+   border-radius: 50px;
+   right: 2%;
+   z-index: 5;
+   text-align: center;
+   color: rgb(111, 185, 111);
+}
+
+.sucessy.active {
+   top: 6.5%;
+
+}
