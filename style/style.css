@@ -1,5 +1,6 @@
 :root {
-   --background-color: rgba(255, 166, 0, 0.573);
+   --background-color: rgba(10, 151, 158, 0.952);
+   --color: white;
 }
 
 * {
@@ -16,7 +17,7 @@ body {
 
 header {
    background-color: var(--background-color);
-   color: black;
+   color: var(--color);
    padding: 20px;
    text-transform: uppercase;
    text-wrap: wrap;
@@ -92,7 +93,7 @@ header button:hover {
 }
 
 .title .icon-close:hover {
-   color: white;
+   color: var(--color);
    background-color: rgb(230, 39, 39);
 }
 
@@ -195,8 +196,8 @@ header button:hover {
 #table, th, td, tr {
    border-collapse: collapse;
    padding: 15px;
-   border-bottom: 2px solid rgba(224, 255, 255, 0.197);
-   border-left: 2px solid rgba(224, 255, 255, 0.197);
+   border-bottom: 2px solid #e0ffff00;
+   border-right: 2px solid rgba(173, 216, 230, 0.323);
 }
 
 tr:nth-child(odd) {
@@ -205,9 +206,50 @@ tr:nth-child(odd) {
 
 th {
    background: var(--background-color);
+   color: var(--color);
    position: sticky;
    top: 0;
    z-index: 2;
+}
+
+.acoes {
+   display: flex;
+   gap: 20px;
+   width: 100%;
+   height: 50px;
+   justify-content: center;
+   align-items: center;
+}
+
+.acoes * {
+   padding: 5px;
+   border: none;
+   cursor: pointer;
+   user-select: none;
+   width: 70px;
+   /* transition: .1s; */
+   font-weight: bold;
+}
+
+
+.acoes #editar {
+   background-color: lightgreen;
+}
+
+.acoes #remover {
+   background-color: red;
+   color: white;
+}
+
+.acoes #editar:hover {
+   border: 2px solid lightgreen;
+   background-color: transparent;
+}
+
+.acoes #remover:hover {
+   border: 2px solid red;
+   background-color: transparent;
+   color: black;
 }
 
 .sucessy {

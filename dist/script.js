@@ -19,6 +19,11 @@ const email = document.querySelector("#email");
 
 const erro = document.getElementsByClassName("error");
 
+const list = new Array();
+
+const getList = localStorage.getItem("", );
+const setList = localStorage.setItem('');
+
 const validarForm = () => {
    let isValid = true;
 
@@ -61,7 +66,7 @@ const validarForm = () => {
    // Validar morada
    if (!morada.value.trim()) {
       morada.style.borderColor = "red";
-      erro[2].textContent = "*A morada é obrigatória!";
+      erro[2].textContent = "*Informe sua morada!";
       erro[2].classList.add("active");
       isValid = false;
    }else if (morada.value.length < 4) {
@@ -78,7 +83,7 @@ const validarForm = () => {
    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
    if (!email.value.trim()) {
       email.style.borderColor = "red";
-      erro[3].textContent = "*O email é obrigatório!"
+      erro[3].textContent = "*Informe seu email!"
       erro[3].classList.add("active");
 
       isValid = false;
@@ -106,15 +111,35 @@ const salvarDados = (e) => {
          sucess.classList.add("active");
          setInterval(() => {
             sucess.classList.remove("active");
-         }, 3500);
+         }, 7500);
     
+         // Função para listar dados
+         listarDados()
 
-
-      }else {
-         // alert("Dados incompletos!")
+         return;
       }
+
    }
 
+}
+
+const listarDados = () => {
+   const table = document.querySelector("#table");
+   const item = document.createElement("tr");
+   console.log("Dados adicionados com sucesso!")
+   item.innerHTML = `
+      <td>${nome.value}</td>
+      <td>${numero.value}</td>
+      <td>${morada.value}</td>
+      <td>${email.value}</td>
+      <div class="acoes">
+         <button id="editar" >Editar</button>
+         <button id="remover" >Remover</button>
+      </div>
+
+   `
+
+   table.appendChild(item);
 }
 
 document.querySelector("#save").addEventListener("click", salvarDados);
