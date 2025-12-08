@@ -15,12 +15,10 @@
          <button class="button" id="openCadastro">Cadastrar</button>
       </header>
 
-      <div class="sucessy"></div>
-
       <section class="section1">
          <div class="title">
             <span></span>
-            <h3>Dados necessarios</h3>
+            <h3>Registrar novo cliente</h3>
             <span class="icon-close">x</span>
          </div>
          <div id="cadastro">
@@ -28,24 +26,24 @@
                <div class="column_dados">
                   <div class="input-box">
                      <label for="nome">Nome</label>
-                     <input type="text" name="nome" id="nome" placeholder="Ex.: John">
+                     <input type="text" name="nome" class="dado" data-index="new" id="nome" placeholder="Ex.: John">
                      <div class="error"></div>
                   </div>
                   <div class="input-box">
                      <label for="numero">Numero</label>
-                     <input type="number" name="numero" id="numero" placeholder="Ex.: 935 555 555">
+                     <input type="number" name="numero" class="dado" id="numero" placeholder="Ex.: 935 555 555">
                      <div class="error"></div>
                   </div>
                </div>
                <div class="column_dados">   
                   <div class="input-box">
                      <label for="morada">Morada</label>
-                     <input type="text" name="morada" id="morada" placeholder="Informe sua morada">
+                     <input type="text" name="morada" class="dado" id="morada" placeholder="Informe sua morada">
                      <div class="error"></div>
                   </div>
                   <div class="input-box">
                      <label for="email">Email</label>
-                     <input type="email" name="email" id="email" placeholder="Ex.: exemplo@gmail.com" required>
+                     <input type="email" name="email" class="dado" id="email" placeholder="Ex.: exemplo@gmail.com">
                      <div class="error"></div>
                   </div>
                </div>

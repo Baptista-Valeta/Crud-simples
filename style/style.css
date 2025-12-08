@@ -222,7 +222,7 @@ th {
 }
 
 .acoes * {
-   padding: 5px;
+   padding: 8px;
    border: none;
    cursor: pointer;
    user-select: none;
@@ -232,44 +232,31 @@ th {
 }
 
 
-.acoes #editar {
+.acoes .edit{
    background-color: lightgreen;
 }
 
-.acoes #remover {
+.acoes .remove {
    background-color: red;
    color: white;
 }
 
-.acoes #editar:hover {
+.acoes .edit:hover {
    border: 2px solid lightgreen;
    background-color: transparent;
 }
 
-.acoes #remover:hover {
+.acoes .remove:hover {
    border: 2px solid red;
    background-color: transparent;
    color: black;
 }
 
-.sucessy {
-   transition: all .2s ease-in-out;
-   top: -6.5%;
-   position: absolute;
-   padding: 10px;
-   background-color: #fff;
-   margin: auto;
-   width: 13%;
-   height: 60px;
-   box-shadow: 3px 2px 20px rgba(71, 69, 69, 0.664);
-   border-radius: 50px;
-   right: 2%;
-   z-index: 5;
-   text-align: center;
-   color: rgb(111, 185, 111);
-}
-
-.sucessy.active {
-   top: 6.5%;
-
+@media screen and (max-width: 1629px) {
+   .input-box {
+      gap: 2px;
+   }
+   .column_dados {
+      margin: 10px 0;
+   }
 }
