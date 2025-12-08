@@ -1,242 +1,238 @@
+// ===============================
+// Seletores Globais
+// ===============================
 const container = document.querySelector(".container");
-const modal_cadastro = document.querySelector('.section1');
+const modal_cadastro = document.querySelector(".section1");
 
-const nome = document.querySelector("#nome")
-const numero = document.querySelector("#numero")
-const morada = document.querySelector("#morada")
-const email = document.querySelector("#email")
+const nome = document.querySelector("#nome");
+const numero = document.querySelector("#numero");
+const morada = document.querySelector("#morada");
+const email = document.querySelector("#email");
 
+const erros = document.querySelectorAll(".error");
+
+// ===============================
+// Funções Auxiliares
+// ===============================
+const getList = () => JSON.parse(localStorage.getItem("Banco")) ?? [];
+const setList = (list) => localStorage.setItem("Banco", JSON.stringify(list));
+
+// Mostrar modal
 const openCadastro = () => {
-   modal_cadastro.classList.add('active'); // Adiciona a classe active ao alemento   
-   container.classList.add("active");
+  modal_cadastro.classList.add("active");
+  container.classList.add("active");
 };
 
+container.ondblclick = () => {
+  closeCadastro();
+} 
+
+// Fechar modal
 const closeCadastro = (e) => {
-   // e.preventDefault();
-   modal_cadastro.classList.remove("active");
-   container.classList.remove("active");
+  modal_cadastro.classList.remove("active");
+  container.classList.remove("active");
 };
 
-const erro = document.getElementsByClassName("error");
+// Mostrar erro padrão
+const showError = (input, errorElement, message) => {
+  input.style.borderColor = "red";
+  errorElement.textContent = message;
+  errorElement.classList.add("active");
+};
 
-const getList = () => JSON.parse(localStorage.getItem('Banco')) ?? []; // Buscar dados no localStorage
-const setList = (banco) => localStorage.setItem('Banco', JSON.stringify(banco));  // Guardar dados no localStorage
+// Remover erro
+const clearError = (input, errorElement) => {
+  input.style.borderColor = "black";
+  errorElement.classList.remove("active");
+};
 
-const validarForm = (client) => {
-   let isValid = true;
+// ===============================
+// Validação do formulário
+// ===============================
+const validarForm = () => {
+  let isValid = true;
 
-   // Validar nome
-   if (!nome.value.trim()) {
-      nome.style.borderColor = "red";
-      erro[0].textContent = "*O nome é obrigatório!";
-      erro[0].classList.add("active");
+  // Validar nome
+  if (!nome.value.trim()) {
+    showError(nome, erros[0], "*O nome é obrigatório!");
+    isValid = false;
+  } else if (nome.value.length < 2) {
+    showError(nome, erros[0], "*O nome deve ter no mínimo 2 caracteres!");
+    isValid = false;
+  } else {
+    clearError(nome, erros[0]);
+  }
 
-      nome.focus();
-      isValid = false;
-   }else if(nome.length < 2) {
-      nome.style.borderColor = "red";
-      erro[0].textContent = "*O nome deve ter no mínimo 2 caracteres!";
-      erro[0].classList.add("active");
+  // Validar número
+  if (!numero.value.trim()) {
+    showError(numero, erros[1], "*O número é obrigatório!");
+    isValid = false;
+  } else if (numero.value.length !== 9) {
+    showError(numero, erros[1], "*O número deve ter 9 dígitos!");
+    isValid = false;
+  } else {
+    clearError(numero, erros[1]);
+  }
 
-      nome.focus();
-      isValid = false;
-   }else {
-      nome.style.borderColor="lightgreen";
-      erro[0].classList.remove("active");
-   }
+  // Validar morada
+  if (!morada.value.trim()) {
+    showError(morada, erros[2], "*A morada é obrigatória!");
+    isValid = false;
+  } else if (morada.value.length < 4) {
+    showError(morada, erros[2], "*A morada deve conter pelo menos 4 caracteres!");
+    isValid = false;
+  } else {
+    clearError(morada, erros[2]);
+  }
 
-   // Validar numero
-   if (!numero.value) {
-      numero.style.borderColor = "red";
-      erro[1].textContent = "*O número é obrigatório!";  
-      erro[1].classList.add("active");      
-      isValid = false;
-   }else if(numero.value.length !== 9) {
-      numero.style.borderColor = "red";
-      erro[1].textContent = "O número deve ter 9 dígitos!"
-      erro[1].classList.add("active");      
-      isValid = false;
-   }else {
-      numero.style.borderColor = "lightgreen"; 
-      erro[1].classList.remove("active");
-   }
+  // Validar email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email.value.trim()) {
+    showError(email, erros[3], "*Informe o email!");
+    isValid = false;
+  } else if (!emailRegex.test(email.value.trim())) {
+    showError(email, erros[3], "*Insira um email válido!");
+    isValid = false;
+  } else {
+    clearError(email, erros[3]);
+  }
 
-   // Validar morada
-   if (!morada.value.trim()) {
-      morada.style.borderColor = "red";
-      erro[2].textContent = "*Informe sua morada!";
-      erro[2].classList.add("active");
-      isValid = false;
-   }else if (morada.length < 4) {
-      morada.style.borderColor = "red";
-      erro[2].textContent = "*A morada deve conter pelo menos 4 caracteres!"
-      erro[2].classList.add("active");
-      isValid = false;
-   }else {
-      morada.style.borderColor = "lightgreen";
-      erro[2].classList.remove("active");
-   }
+  return isValid;
+};
 
-   // Validar email
-   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-   if (!email.value.trim()) {
-      email.style.borderColor = "red";
-      erro[3].textContent = "*Informe seu email!"
-      erro[3].classList.add("active");
-
-      isValid = false;
-   }else if (!emailRegex.test(email.value.trim())) {
-      email.style.borderColor = "red";
-      erro[3].textContent = "*Insira um email válido por favor!"
-      erro[3].classList.add("active");
-
-      isValid = false;
-   }else {
-      email.style.borderColor = "lightgreen";
-      erro[3].classList.remove("active");
-   }
-   return isValid;
-}
-
-const deleteClient = (index) => {
-   const listClient = Client();
-   listClient.splice(index, 1);
-   setList(listClient);
-}
+// ===============================
+// CRUD LOCALSTORAGE
+// ===============================
+const createClient = (client) => {
+  const list = getList();
+  list.push(client);
+  setList(list);
+};
 
 const updateClient = (index, client) => {
-   const listClient = Client();
-   listClient[index] = client;
-   setList(listClient);
-}
+  const list = getList();
+  list[index] = client;
+  setList(list);
+};
 
-const Client = () => getList();
+const deleteClient = (index) => {
+  const list = getList();
+  list.splice(index, 1);
+  setList(list);
+};
 
-const createClient = (client) => {
-   const listClient = getList();
-   listClient.push(client);
-   setList(listClient);
-}
-
+// ===============================
+// Formulário
+// ===============================
 const clearFields = () => {
-   const fields = document.querySelectorAll(".dado");
-   fields.forEach(field => field.value = "");
-   document.querySelector("#nome").dataset.index = "new";
-   document.querySelector(".title>h3").textContent = "Novo cliente";
-}
+  document.querySelectorAll(".dado").forEach((el) => (el.value = ""));
+  nome.dataset.index = "new";
+  document.querySelector(".title h3").textContent = "Novo Cliente";
+};
 
+// Salvar cliente
 const saveClient = (e) => {
-   e.preventDefault(); // Impede o envio padrão do formulário
-   if (e.type === "click") {
-      const client = {
-         "nome": nome.value,
-         "numero": numero.value,
-         "morada": morada.value,
-         "email": email.value
-      }
-      if(validarForm(client) === true) {
-         
-         const index = document.querySelector("#nome").dataset.index;
-         console.log("Cliente cadastrado com sucesso")
-         console.log(index)
-         if(index === "new") {
-            createClient(client);
-            updateTable();
-            closeCadastro();
-         }else {
-            updateClient(index, client);
-            updateTable();
-            closeCadastro();
-         }
-         nome.innerHTML = "";
-         numero.innerHTML = "";
-         morada.innerHTML = "";
-         email.innerHTML = "";
-         setTimeout(() => {
-            alert("Operação concluída com sucesso")
-         }, 600)
-      }
-   }
+  e.preventDefault();
 
+  if (!validarForm()) return;
 
-   return; 
-}
+  const client = {
+    nome: nome.value,
+    numero: numero.value,
+    morada: morada.value,
+    email: email.value,
+  };
 
+  const index = nome.dataset.index;
+
+  if (index === "new") {
+    createClient(client);
+  } else {
+    updateClient(index, client);
+  }
+
+  updateTable();
+  closeCadastro();
+
+  clearFields();
+
+  // client.nome = ""
+  // client.morada = ""
+  // client.numero = ""
+  // client.email = ""
+
+  setTimeout(() => alert("Operação concluída com sucesso"), 600);
+};
+
+// ===============================
+// Tabela
+// ===============================
 const createRow = (client, index) => {
-   const table = document.querySelector("#table>tbody");
-   const item = document.createElement("tr");
-   item.innerHTML = `
-      <td>${client.nome}</td>
-      <td>${client.numero}</td>
-      <td>${client.morada}</td>
-      <td>${client.email}</td>
-      <div class="acoes">
-         <button type="button" class="edit" id="editar-${index}" >Editar</button>
-         <button type="button" class="remove" id="remover-${index}" >Remover</button>
-      </div>
-   `
-   table.appendChild(item);
-}
+  const table = document.querySelector("#table tbody");
+  const row = document.createElement("tr");
+
+  row.innerHTML = `
+    <td>${client.nome}</td>
+    <td>${client.numero}</td>
+    <td>${client.morada}</td>
+    <td>${client.email}</td>
+    <td class="acoes">
+      <button class="edit" id="editar-${index}">Editar</button>
+      <button class="remove" id="remover-${index}">Remover</button>
+    </td>
+  `;
+
+  table.appendChild(row);
+};
 
 const clearTable = () => {
-   const rows = document.querySelectorAll("#table>tbody tr");
-   console.log(rows);
-   rows.forEach(row => row.parentNode.removeChild(row));
-}
+  document.querySelector("#table tbody").innerHTML = "";
+};
 
 const updateTable = () => {
-   const listClient = Client();
-   clearTable();
-   listClient.forEach(createRow);
-}
+  clearTable();
+  getList().forEach(createRow);
+};
 
-const fillFieds = (client) => {
-   document.querySelector('#nome').value = client.nome;
-   document.querySelector('#numero').value = client.numero;
-   document.querySelector('#morada').value = client.morada;
-   document.querySelector("#email").value = client.email;
-   document.querySelector('#nome').dataset.index = client.index;
-}
+// Preencher formulário para editar
+const fillFields = (client, index) => {
+  nome.value = client.nome;
+  numero.value = client.numero;
+  morada.value = client.morada;
+  email.value = client.email;
 
-const editClient = (index) => {
-   // Captura o elemento e o repectivo indeice do elemento
-   const client = Client()[index];
-   client.index = index;
-   fillFieds(client);
-   document.querySelector(".title>h3").textContent = "Editar Cliente " + client.nome;
-   openCadastro();
-}
+  nome.dataset.index = index;
+  document.querySelector(".title h3").textContent = `Editar Cliente: ${client.nome}`;
+};
 
+// Evento de editar ou apagar
 const editDelete = (event) => {
-   if (event.target.type === 'button') {
-      // Captura o elemento id do elemento clicado com event.target.id e transforma em um array separado no ifen(-);
-      const [action, index] = event.target.id.split('-');
+  if (event.target.tagName !== "BUTTON") return;
 
-      if (action === 'editar') {
-         editClient(index);
-      }else {
-         const client = Client()[index];
-         const response = confirm(`Deseja realmente remover o cliente ${client.nome}?`);
-         if (response) {
-            deleteClient(index);
-            updateTable();
-         }
-      }
-   }
-}
+  const [action, index] = event.target.id.split("-");
 
-updateTable();
+  if (action === "editar") {
+    const client = getList()[index];
+    fillFields(client, index);
+    openCadastro();
+  } else {
+    const client = getList()[index];
+    const confirmation = confirm(`Deseja remover o cliente ${client.nome}?`);
+    if (confirmation) {
+      deleteClient(index);
+      updateTable();
+    }
+  }
+};
 
-document.querySelector("#openCadastro")
-   .addEventListener("click", openCadastro);
-
+// ===============================
+// Eventos
+// ===============================
+document.querySelector("#openCadastro").addEventListener("click", openCadastro);
 document.querySelector("#save").addEventListener("click", saveClient);
+document.querySelector("#cancel").addEventListener("click", closeCadastro);
+document.querySelector("#table tbody").addEventListener("click", editDelete);
+document.querySelector(".icon-close").addEventListener("click", closeCadastro);
 
-document.querySelector("#cancel")
-   .addEventListener("click", closeCadastro);
-
-document.querySelector("#table>tbody")
-   .addEventListener("click", editDelete);
-
-document.querySelector(".icon-close")
-   .addEventListener("click", closeCadastro);
+// Inicializa tabela
+updateTable();

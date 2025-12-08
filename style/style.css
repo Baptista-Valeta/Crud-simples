@@ -1,6 +1,8 @@
 :root {
-   --background-color: rgba(10, 151, 158, 0.952);
-   --color: white;
+   --background-color: rgba(18, 69, 71, 0.952);
+   --color: rgb(197, 193, 193);
+   --btn-color1: rgba(93, 184, 93, 0.459);
+   --btn-color2: rgba(207, 58, 58, 0.568);
 }
 
 * {
@@ -12,7 +14,9 @@
 body {
    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
    color: black;
-   background-color: white;
+   background-color: #e4e4e4;
+   width: 100%;
+   height: 100%;
 }
 
 header {
@@ -31,19 +35,24 @@ header button {
    position: absolute;
    right: 10%;
    padding: 10px;
-   background-color: lightblue;
+   background-color: rgba(173, 216, 230, 0.637);
    cursor: pointer;
    border: none;
    font-weight: 600;
+   z-index: 5;
 }
 
 header button:hover {
    background-color: rgb(132, 209, 235);
 }
 
+.container {
+   z-index: -1;
+}
+
 .container.active {
    background-color: #fff;
-   background-color: rgba(55, 54, 54, 0.887);
+   background-color: #000000de;
    width: 100%;
    height: 100vh;
    z-index: 3;
@@ -104,18 +113,20 @@ header button:hover {
 }
 
 .dados {
+   position: absolute;
    display: flex;
    padding: 20px;
    justify-content: space-evenly;
    gap: 10%;
    width: 100%;
    flex-wrap: wrap;
+   z-index: 10;
 }
 
 .dados .column_dados {
    display: flex;
-   gap: 50px;
    flex-direction: column;
+   gap: 25px;
 }
 
 
@@ -196,19 +207,17 @@ header button:hover {
 #table, th, td, tr {
    border-collapse: collapse;
    padding: 15px;
-   border-bottom: 2px solid #e0ffff00;
-   border-right: 2px solid rgba(173, 216, 230, 0.323);
+   border-bottom: 1px solid #e0ffff00;
+   border-right: 1px solid rgba(173, 216, 230, 0.323);
 }
 
 tr:nth-child(odd) {
    background-color: rgba(173, 216, 230, 0.277);
 }
 
-th {
+#table th {
    background: var(--background-color);
    color: var(--color);
-   position: sticky;
-   top: 0;
    z-index: 2;
 }
 
@@ -233,30 +242,43 @@ th {
 
 
 .acoes .edit{
-   background-color: lightgreen;
+   background-color: var(--btn-color1);
 }
 
 .acoes .remove {
-   background-color: red;
-   color: white;
+   background-color: var(--btn-color2);
 }
 
 .acoes .edit:hover {
-   border: 2px solid lightgreen;
+   border: 2px solid var(--btn-color1);
    background-color: transparent;
 }
 
 .acoes .remove:hover {
-   border: 2px solid red;
+   border: 2px solid var(--btn-color2);
    background-color: transparent;
    color: black;
 }
 
-@media screen and (max-width: 1629px) {
-   .input-box {
-      gap: 2px;
-   }
+@media screen and (max-width: 1638px) {
    .column_dados {
-      margin: 10px 0;
+      margin: 0 -60px;
+   }
+}
+
+@media screen and (max-width: 1490px) {
+   .input-box input {
+      width: 300px;
+   }
+}
+
+@media screen and (max-width: 1230px) {
+   .column_dados {
+      margin: 20px 0;
+      width: 100%;
+   }
+
+   .input-box input {
+      width: 100%;
    }
 }
